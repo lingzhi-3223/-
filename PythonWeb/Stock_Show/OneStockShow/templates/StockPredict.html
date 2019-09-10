@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="{% static 'echarts.min.js' %}"/></script>
+    <title>
+		水镜网：股票预测
+	</title>
+</head>
+<body>
+<center>
+     <!--<h2>{x|safe}</h2>-->
+     <h2>多维预测</h2>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        option = {
+        title: {
+            text: '最高价预测'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['预测值','最高价']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['2017-3','2017-4','2017-5','2017-6','2017-7','2017-8','2017-8']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'预测值',
+                type:'line',
+                stack: '总量',
+                data:[120, 132, 101, 134, 90, 230, 210]
+            },
+            {
+                name:'最高价',
+                type:'line',
+                stack: '总量',
+                data:[220, 182, 191, 234, 290, 330, 310]
+            },
+            
+        ]
+    };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    <center/>
+</body>
+</html>

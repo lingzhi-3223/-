@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>
+		水镜网：股票显示
+	</title>
+</head>
+<body>
+    <form action="{% url 'find' %}" method="post">
+    {% csrf_token %}
+        <label>股票查询
+        <br/>
+            <input type="text" name="find"/>
+        </label>
+        <input type="submit" value="搜索">
+    </from>
+    <br/>
+    {% for stock in stocks %}
+    <a href="{% url 'stock_page' stock.id %} ">{{ stock.title}}</a>
+    <br/>
+    {% endfor %}
+	<p>
+	</p>
+	<br/>
+	
+	
+</body>
+</html>
